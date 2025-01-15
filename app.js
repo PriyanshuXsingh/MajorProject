@@ -89,9 +89,6 @@ res.locals.currUser = req.user;
 next();
 });
 
-app.get("/",(req,res)=>{
-res.render("listings/index.ejs");
-});
 // app.get("/demouser",async(req,res)=>{
 //  let fakeuser = new User({
 //     email: "stu@gmail.com",
