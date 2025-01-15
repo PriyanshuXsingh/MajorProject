@@ -90,7 +90,7 @@ next();
 });
 
 app.get("/",(req,res)=>{
-res.render("https://majorproject-2-p2wf.onrender.com");
+res.render("listings/index.ejs");
 });
 // app.get("/demouser",async(req,res)=>{
 //  let fakeuser = new User({
