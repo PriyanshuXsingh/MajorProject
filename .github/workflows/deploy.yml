@@ -1,38 +1,27 @@
 name: Deploy to Render
 
-# Trigger the workflow on push to the master branch
 on:
   push:
     branches:
-      - master  # Replace with your branch name if different (e.g., "main")
+      - master
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Using Ubuntu as the runner environment
+    runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Checkout code from GitHub
     - name: Checkout code
-      uses: actions/checkout@v2  # This checks out your repository's code
+      uses: actions/checkout@v2
 
-    # Step 2: Set up Node.js environment
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '20.18.0'  # Specify the Node.js version you want (use the version that matches your project)
+        node-version: '20.x'
 
-    # Step 3: Install dependencies
     - name: Install dependencies
-      run: npm install --legacy-peer-deps  # Use --legacy-peer-deps to fix potential dependency issues
+      run: npm install --legacy-peer-deps
 
-    # Step 4: Build or run tests (optional step if required)
-    - name: Run tests (optional)
-      run: npm test  # If you have tests, you can run them here
-
-    # Step 5: Deploy to Render (customize this step based on your deployment process)
     - name: Deploy to Render
       run: |
         echo "Deploying to Render..."
-        # Add deployment script here. For example, if you're using Render's API, you can deploy via their CLI or API
-        # Example deployment:
-        # curl -X POST https://api.render.com/deploys -d '{ "serviceId": "your-service-id" }'
+        # Add deployment script here
