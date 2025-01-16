@@ -61,39 +61,34 @@
    <div class="invalid-feedback">location Should be Valid!</div>
   </div>
 
-<script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const countryDropdown = document.getElementById("countryDropdown");
-        const countryDropdownBtn =
-          document.getElementById("countryDropdownBtn");
-        const selectedCountryInput = document.getElementById("selectedCountry");
+  <button class="btn btn-dark add-btn">Add</button><br><br>
+</form>
+</div>
+</div>
 
-        // Fetch countries from REST API
-        fetch("https://restcountries.com/v3.1/all")
+const countryDropdown = document.getElementById("countryDropdown");
+const countryDropdownBtn = document.getElementById("countryDropdownBtn");
+const selectedCountryInput = document.getElementById("selectedCountry");
+
+fetch("https://restcountries.com/v3.1/all")
   .then(response => response.json())
   .then(data => {
     console.log("Fetched data:", data); // Debugging: Check API response
 
-    // Filter out countries that don't have a valid name
     const countries = data
       .filter(country => country.name && country.name.common) // Remove missing names
       .map(country => ({
         name: country.name.common,
         flag: country.flags ? country.flags.png : '' // Handle missing flags
       }))
-      .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically
+      .sort((a, b) => a.name.localeCompare(b.name));
 
-    // Check if countries list is empty
     if (countries.length === 0) {
       console.error("No valid countries found!");
       return;
     }
 
     // Populate dropdown
-    const countryDropdown = document.getElementById("countryDropdown");
-    const countryDropdownBtn = document.getElementById("countryDropdownBtn");
-    const selectedCountryInput = document.getElementById("selectedCountry");
-
     countries.forEach(country => {
       const listItem = document.createElement("li");
       listItem.innerHTML = `
@@ -104,21 +99,15 @@
       `;
       countryDropdown.appendChild(listItem);
 
-      // Add click event to update selection
+      // Click event to update selection
       listItem.querySelector("a").addEventListener("click", function (e) {
         e.preventDefault();
         countryDropdownBtn.innerHTML = `${country.flag ? `<img src="${country.flag}" width="20" class="me-2">` : ''} ${country.name}`;
         selectedCountryInput.value = country.name;
       });
     });
+
+    console.log("Dropdown populated successfully!"); // Debugging
   })
   .catch(error => console.error("Error fetching countries:", error));
 
-      });
-    </script>
-  
-  
-  <button class="btn btn-dark add-btn">Add</button><br><br>
-</form>
-</div>
-</div>
