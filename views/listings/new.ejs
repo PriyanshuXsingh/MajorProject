@@ -65,7 +65,7 @@
 </form>
 </div>
 </div>
-
+<script>
 const countryDropdown = document.getElementById("countryDropdown");
 const countryDropdownBtn = document.getElementById("countryDropdownBtn");
 const selectedCountryInput = document.getElementById("selectedCountry");
@@ -110,4 +110,4 @@ fetch("https://restcountries.com/v3.1/all")
     console.log("Dropdown populated successfully!"); // Debugging
   })
   .catch(error => console.error("Error fetching countries:", error));
-
+</script>
